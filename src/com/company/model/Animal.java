@@ -1,9 +1,13 @@
 package com.company.model;
 
+import java.time.LocalDate;
+import java.util.List;
+
 public class Animal {
 		
 	private String name;
 	private int age;
+	private List<LocalDate> vaccineDates;
 	
 	public Animal() {
 		
