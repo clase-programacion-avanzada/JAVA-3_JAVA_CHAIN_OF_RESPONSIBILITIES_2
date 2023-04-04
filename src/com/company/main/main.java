@@ -19,8 +19,25 @@ public class Main {
 		
 		animals.add(cat);
 		
-		dog.setName("Fabricio");
+		Animal nonAdoptedAnimal = new Animal();
 		
-		System.out.println(dog.getName());
+		nonAdoptedAnimal.setName("Pancracio");
+		nonAdoptedAnimal.setAge(1);
+		
+		animals.add(nonAdoptedAnimal);
+		
+		for(int i = 0 ; i < animals.size() ; i++) {
+			Animal auxAnimal = animals.get(i);
+			System.out.println(auxAnimal.toString());
+		}
+		
+		for(Animal auxAnimal : animals) {
+			System.out.println(auxAnimal.getName() + " " + auxAnimal.getAge());
+		}
+		
+		System.out.println(animals);
+		
+		
+		
 	}
 }
