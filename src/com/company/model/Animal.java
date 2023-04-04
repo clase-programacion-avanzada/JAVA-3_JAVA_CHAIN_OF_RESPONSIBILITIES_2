@@ -1,9 +1,18 @@
 package com.company.model;
 
 public class Animal {
-
+		
 	private String name;
 	private int age;
+	
+	public Animal() {
+		
+		this("NoName", 0);
+		/*
+		this.name = "NoName";
+		this.age = 0;
+		*/
+	}
 	
 	public Animal(String name, int age) {
 		this.name = name;
