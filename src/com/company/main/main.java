@@ -2,7 +2,7 @@ package com.company.main;
 
 import com.company.model.Animal;
 
-public class main {
+public class Main {
 
 	public static void main(String[] args) {
 		
