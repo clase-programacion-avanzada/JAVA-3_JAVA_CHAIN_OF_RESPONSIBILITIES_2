@@ -21,23 +21,37 @@ public class Main {
 		
 		Animal nonAdoptedAnimal = new Animal();
 		
+		animals.add(nonAdoptedAnimal);
+		
 		nonAdoptedAnimal.setName("Pancracio");
 		nonAdoptedAnimal.setAge(1);
 		
-		animals.add(nonAdoptedAnimal);
-		
+			
 		for(int i = 0 ; i < animals.size() ; i++) {
 			Animal auxAnimal = animals.get(i);
-			System.out.println(auxAnimal.toString());
+			System.out.println(
+					auxAnimal.getName() + 
+					" " + 
+					auxAnimal.getAge());
 		}
 		
 		for(Animal auxAnimal : animals) {
-			System.out.println(auxAnimal.getName() + " " + auxAnimal.getAge());
+			System.out.println(
+					auxAnimal.getName() + 
+					" " + 
+					auxAnimal.getAge());
 		}
 		
-		System.out.println(animals);
+		animals.remove(2);
 		
+		for(Animal auxAnimal : animals) {
+			System.out.println(
+					auxAnimal.getName() + 
+					" " + 
+					auxAnimal.getAge());
+		}
 		
+
 		
 	}
 }
