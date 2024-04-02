@@ -47,8 +47,8 @@ public class AdminController {
 
         int index = 0;
         for (Animal animal : animals) {
-            String header = "" + index + ": ";
-            animalsToShow.add(index + animal.toString());
+
+            animalsToShow.add(index +": " + animal.toString());
             index++;
         }
 

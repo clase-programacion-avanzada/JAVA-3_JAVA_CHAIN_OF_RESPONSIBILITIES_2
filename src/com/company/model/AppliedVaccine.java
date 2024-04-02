@@ -52,7 +52,7 @@ public class AppliedVaccine {
     @Override
     public String toString() {
         return "Vaccine: " + vaccine.getBrand() + " - " + vaccine.getVolume() + " ml."
-            + " \nDate when applied: " + dateOfVaccine;
+            + " Date when applied: " + dateOfVaccine;
     }
 
 }
