@@ -1,35 +1,32 @@
 package com.company.model;
 
 import java.time.LocalDate;
+import java.util.UUID;
 
 public class Vaccine {
-	
-	private LocalDate dateOfVaccine;
+
+	private UUID id = UUID.randomUUID();
+	private String batchNumber;
 	private int volume;
 	private String brand;
-	
-	
-	
-	public Vaccine(LocalDate dateOfVaccine, int volume, String brand) {
-		
-		this.dateOfVaccine = dateOfVaccine;
-		this.volume = volume;
-		this.brand = brand;
-	}
-	
-	public Vaccine(int volume, String brand) {
-		
-		this.dateOfVaccine = LocalDate.now();
-		this.volume = volume;
-		this.brand = brand;
-	}
-	
+	private LocalDate dateOfExpiration;
+
 	/**
-	 * @return the dateOfVaccine
+	 * @param batchNumber
+	 * @param volume
+	 * @param brand
+	 * @param dateOfExpiration
 	 */
-	public LocalDate getDateOfVaccine() {
-		return dateOfVaccine;
+
+	public Vaccine(String batchNumber, int volume, String brand, LocalDate dateOfExpiration) {
+
+		this.batchNumber = batchNumber;
+		this.volume = volume;
+		this.brand = brand;
+		this.dateOfExpiration = dateOfExpiration;
+
 	}
+
 	/**
 	 * @return the volume
 	 */
@@ -45,9 +42,7 @@ public class Vaccine {
 	/**
 	 * @param dateOfVaccine the dateOfVaccine to set
 	 */
-	public void setDateOfVaccine(LocalDate dateOfVaccine) {
-		this.dateOfVaccine = dateOfVaccine;
-	}
+
 	/**
 	 * @param volume the volume to set
 	 */
@@ -60,7 +55,33 @@ public class Vaccine {
 	public void setBrand(String brand) {
 		this.brand = brand;
 	}
-	
-	
 
+	public UUID getId() {
+		return id;
+	}
+
+	public String getBatchNumber() {
+		return batchNumber;
+	}
+
+	public LocalDate getDateOfExpiration() {
+		return dateOfExpiration;
+	}
+
+	public void setBatchNumber(String batchNumber) {
+		this.batchNumber = batchNumber;
+	}
+
+	public void setDateOfExpiration(LocalDate dateOfExpiration) {
+		this.dateOfExpiration = dateOfExpiration;
+	}
+
+	@Override
+	public String toString() {
+		return "id " + id
+			+ " \nbatchNumber " + batchNumber
+			+ " \nvolume " + volume
+			+ " \nbrand " + brand
+			+ " \ndateOfExpiration " + dateOfExpiration;
+	}
 }

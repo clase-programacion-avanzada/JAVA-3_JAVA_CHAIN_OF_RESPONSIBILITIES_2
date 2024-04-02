@@ -1,15 +1,15 @@
 package com.company.model;
 
-import java.time.LocalDate;
-import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.UUID;
 
 public class Animal {
-		
+
+	private UUID id;
 	private String name;
 	private int age;
-	private List<Vaccine> vaccines;
+	private List<AppliedVaccine> appliedVaccines;
 	
 	
 	public Animal() {
@@ -22,20 +22,28 @@ public class Animal {
 	}
 	
 	public Animal(String name, int age) {
+		this.id = UUID.randomUUID();
 		this.name = name;
 		this.age = age;
-		this.vaccines = 
-				new ArrayList<Vaccine>();
+		this.appliedVaccines =
+				new ArrayList<AppliedVaccine>();
 	}
-	
-	
-	
+
+
+	public UUID getId() {
+		return id;
+	}
+
 	/**
 	 * @return the vaccineDates
 	 */
-	public List<Vaccine> getVaccinees() {
-		return vaccines;
+	public List<AppliedVaccine> getAppliedVaccines() {
+		//Alternative
+		//return new ArrayList<>(vaccines);
+		return appliedVaccines;
 	}
+
+	//We won't have a setter for the entire list of vaccines
 
 	/**
 	 * @return the name
@@ -62,48 +70,31 @@ public class Animal {
 		this.age = age;
 	}
 	
-	public void addVaccine(
-			LocalDate dateOfVaccine, 
-			int volume,
-			String brand) {
-		
-		Vaccine vaccine = 
-				new Vaccine(
-					dateOfVaccine,
-					volume,
-					brand);
-		
-		this.vaccines.add(vaccine);
-		
-	}
-	
-	public void addVaccine( 
-			int volume,
-			String brand) {
-		 
-		Vaccine vaccine = 
-				new Vaccine(volume,brand);		
-		
-		this.vaccines.add(vaccine);
-		
-	}
-	
-	public boolean removeVaccine( 
-			int index) {
-		 
-			
-		return this.vaccines.remove(index) 
-				!= null;
-		
-	}
-	
-	
-	
+
 	@Override
 	public String toString() {
-		return "Animal [name=" + name + ", age=" + age + "]";
+		//Java 21 String templates https://www.baeldung.com/java-21-string-templates
+		return STR.
+			"id \{this.id} Name: \{this.name}  Age: \{this.age}  Vaccines Applied: \{this.appliedVaccines.size()}";
 	}
-	
-	
-	
+
+	public String toIdAndName() {
+		return STR.
+			"id \{this.id} Name: \{this.name}";
+	}
+
+
+	public boolean applyVaccine(Vaccine vaccine) {
+		AppliedVaccine appliedVaccine = new AppliedVaccine(vaccine);
+		return this.appliedVaccines.add(appliedVaccine);
+	}
+
+	public boolean deleteVaccine(UUID vaccineUUID) {
+		for (AppliedVaccine appliedVaccine : this.appliedVaccines) {
+			if (appliedVaccine.getVaccine().getId().equals(vaccineUUID)) {
+				return this.appliedVaccines.remove(appliedVaccine);
+			}
+		}
+		return false;
+	}
 }
