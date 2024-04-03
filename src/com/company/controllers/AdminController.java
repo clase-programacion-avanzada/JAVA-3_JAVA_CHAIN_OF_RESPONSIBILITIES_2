@@ -48,7 +48,7 @@ public class AdminController {
         int index = 0;
         for (Animal animal : animals) {
 
-            animalsToShow.add(index +": " + animal.toString());
+            animalsToShow.add(index +") " + animal.toString());
             index++;
         }
 
@@ -61,7 +61,7 @@ public class AdminController {
 
         for(int i = 0; i < vaccines.size(); i++) {
             Vaccine vaccine = vaccines.get(i);
-            vaccinesToShow.add(i + vaccine.toString());
+            vaccinesToShow.add(i + ") " + vaccine.toString());
         }
 
         return vaccinesToShow;
@@ -86,7 +86,7 @@ public class AdminController {
 
         int index = 0;
         for (Animal animal : animals) {
-            animalsToShow.add(index + animal.toIdAndName());
+            animalsToShow.add(index +") " + animal.toIdAndName());
             index++;
         }
 
@@ -98,9 +98,14 @@ public class AdminController {
 
         List<String> vaccinesToShow = new ArrayList<>();
 
+        if (vaccines == null || vaccines.isEmpty()) {
+            vaccinesToShow.add("No vaccines applied to this animal");
+            return vaccinesToShow;
+        }
+
         for(int i = 0; i < vaccines.size(); i++) {
             AppliedVaccine vaccine = vaccines.get(i);
-            vaccinesToShow.add(i + vaccine.toString());
+            vaccinesToShow.add(i + ") " + vaccine.toString());
         }
 
         return vaccinesToShow;

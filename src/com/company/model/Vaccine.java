@@ -78,10 +78,10 @@ public class Vaccine {
 
 	@Override
 	public String toString() {
-		return "id " + id
-			+ " batchNumber " + batchNumber
-			+ " volume " + volume
-			+ " brand " + brand
-			+ " dateOfExpiration " + dateOfExpiration;
+		return "id: " + id
+			+ " | batchNumber: " + batchNumber
+			+ " | volume: " + volume
+			+ " | brand: " + brand
+			+ " | dateOfExpiration: " + dateOfExpiration;
 	}
 }

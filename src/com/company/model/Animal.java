@@ -75,12 +75,12 @@ public class Animal {
 	public String toString() {
 		//Java 21 String templates https://www.baeldung.com/java-21-string-templates
 		return STR.
-			"id \{this.id} Name: \{this.name}  Age: \{this.age}  Vaccines Applied: \{this.appliedVaccines.size()}";
+			"id \{this.id} | Name: \{this.name} | Age: \{this.age} | Vaccines Applied: \{this.appliedVaccines.size()}";
 	}
 
 	public String toIdAndName() {
 		return STR.
-			"id \{this.id} Name: \{this.name}";
+			"id \{this.id} | Name: \{this.name}";
 	}
 
 

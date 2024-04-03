@@ -28,6 +28,7 @@ public class Main {
 
 		String menu =
 			"""
+           
            1. Create new animal
            2. Create a new vaccine
            3. Apply vaccine to an animal
@@ -37,6 +38,7 @@ public class Main {
            7. Delete a vaccine
            8. Delete an animal
            9. Exit
+           
            """;
 
 		do {
@@ -65,19 +67,27 @@ public class Main {
 	}
 
 	private static void deleteVaccine(Scanner scanner) {
-		System.out.println("Enter the vaccine id");
 		showAllVaccines();
+		System.out.println("Enter the vaccine id to be deleted");
 
 		String vaccineNumber = scanner.nextLine();
 
+		System.out.println("Are you sure you want to delete the vaccine with id " + vaccineNumber + "? (y/n)");
+		String confirmation = scanner.nextLine();
 
-		boolean vaccineDeleted = adminController.deleteVaccine(vaccineNumber);
+		if (confirmation.equals("y")) {
+			boolean vaccineDeleted = adminController.deleteVaccine(vaccineNumber);
 
-		if(vaccineDeleted) {
-			System.out.println("Vaccine deleted successfully");
-		} else {
-			System.out.println("Vaccine not deleted");
+			if(vaccineDeleted) {
+				System.out.println("Vaccine deleted successfully");
+			} else {
+				System.out.println("Vaccine not deleted");
+			}
 		}
+
+		System.out.println("Moving back to the main menu");
+
+
 	}
 
 	private static void deleteAnimal(Scanner scanner) {
@@ -87,13 +97,23 @@ public class Main {
 		int animalNumber = scanner.nextInt();
 		scanner.nextLine();
 
-		boolean animalDeleted = adminController.deleteAnimal(animalNumber);
+		System.out.println("Are you sure you want to delete the animal with number " + animalNumber + "? (y/n)");
 
-		if(animalDeleted) {
-			System.out.println("Animal deleted successfully");
-		} else {
-			System.out.println("Animal not deleted");
+		String confirmation = scanner.nextLine();
+
+		if (confirmation.equals("y")) {
+			boolean animalDeleted = adminController.deleteAnimal(animalNumber);
+
+			if(animalDeleted) {
+				System.out.println("Animal deleted successfully");
+			} else {
+				System.out.println("Animal not deleted");
+			}
 		}
+
+		System.out.println("Moving back to the main menu");
+
+
 	}
 
 	private static void showVaccinesAppliedToAnimal(Scanner scanner) {
