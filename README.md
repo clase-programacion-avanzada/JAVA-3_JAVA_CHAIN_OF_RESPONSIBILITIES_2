@@ -30,31 +30,31 @@ Para ejecutar el proyecto, siga los siguientes pasos:
         9. Exit
     ```
 5. Si desea, puede copiar el siguiente contenido para cargar datos de animales y vacunas (debe presionar la tecla enter después de pegar el contenido):
-```
-1
-Paco
-1
-1
-Miauricio
-2
-1
-Charizandra
-3
-2
-MAY2020
-35
-Pfizer
-2022-05-02
-2
-JUN2022
-25
-Moderna
-2024-06-30
-2
-JAN2023
-45
-AstraZeneca
-2025-01-31
-4
-```
+   ```
+   1
+   Paco
+   1
+   1
+   Miauricio
+   2
+   1
+   Charizandra
+   3
+   2
+   MAY2020
+   35
+   Pfizer
+   2022-05-02
+   2
+   JUN2022
+   25
+   Moderna
+   2024-06-30
+   2
+   JAN2023
+   45
+   AstraZeneca
+   2025-01-31
+   4
+   ```
 6. A partir de aquí puede interactuar con el menú y probar las diferentes funcionalidades del programa.
