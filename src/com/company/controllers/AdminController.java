@@ -72,8 +72,7 @@ public class AdminController {
 
         List<String> vaccinesToShow = new ArrayList<>();
 
-        for(int i = 0; i < vaccines.size(); i++) {
-            Vaccine vaccine = vaccines.get(i);
+        for (Vaccine vaccine : vaccines) {
             vaccinesToShow.add(vaccine.toString());
         }
 

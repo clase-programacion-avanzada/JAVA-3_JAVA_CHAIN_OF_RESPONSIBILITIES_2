@@ -74,13 +74,20 @@ public class Animal {
 	@Override
 	public String toString() {
 		//Java 21 String templates https://www.baeldung.com/java-21-string-templates
-		return STR.
-			"id \{this.id} | Name: \{this.name} | Age: \{this.age} | Vaccines Applied: \{this.appliedVaccines.size()}";
+		return String.format(
+			"Animal: %s | Age: %d | Vaccines: %s",
+			this.name,
+			this.age,
+			this.appliedVaccines
+		);
 	}
 
 	public String toIdAndName() {
-		return STR.
-			"id \{this.id} | Name: \{this.name}";
+		return String.format(
+			"Animal: %s | Id: %s",
+			this.name,
+			this.id
+		);
 	}
 
 

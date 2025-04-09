@@ -1,0 +1,148 @@
+@startuml
+
+package "com.company" {
+
+    class Main {
+        + main(args: String[]): void
+    }
+
+    package "model" {
+        class Animal {
+            - id : UUID
+            - name : String
+            - age : int
+            
+            + Animal()
+            + Animal(name: String, age: int)
+            + getId(): UUID
+            + getName(): String
+            + getAge(): int
+            + setName(name: String): void
+            + setAge(age: int): void
+            + getAppliedVaccines(): List<AppliedVaccine>
+            + applyVaccine(vaccine: Vaccine): boolean
+            + deleteVaccine(vaccineUUID: UUID): boolean
+            + toString(): String
+            + toIdAndName(): String
+        }
+
+        class AppliedVaccine {
+            - dateOfVaccine: LocalDate
+            
+            + AppliedVaccine(vaccine: Vaccine, dateOfVaccine: LocalDate)
+            + AppliedVaccine(vaccine: Vaccine)
+            + AppliedVaccine(batchNumber: String, volume: int, brand: String, dateOfVaccine: LocalDate, dateOfExpiration: LocalDate)
+            + getVaccine(): Vaccine
+            + getDateOfVaccine(): LocalDate
+            + setVaccine(vaccine: Vaccine): void
+            + setDateOfVaccine(dateOfVaccine: LocalDate): void
+            + toString(): String
+        }
+
+        class Vaccine {
+            - id : UUID
+            - batchNumber : String
+            - volume : int
+            - brand : String
+            - dateOfExpiration : LocalDate
+            
+            + Vaccine(batchNumber: String, volume: int, brand: String, dateOfExpiration: LocalDate)
+            + getId(): UUID
+            + getBatchNumber(): String
+            + getVolume(): int
+            + getBrand(): String
+            + getDateOfExpiration(): LocalDate
+            + setBatchNumber(batchNumber: String): void
+            + setVolume(volume: int): void
+            + setBrand(brand: String): void
+            + setDateOfExpiration(dateOfExpiration: LocalDate): void
+            + toString(): String
+        }
+
+        AppliedVaccine "1" *--> "1" Vaccine : vaccine
+        Animal "1" o--> "*" AppliedVaccine : appliedVaccines
+    }
+
+    package "services" {
+        class AnimalService {
+
+            + AnimalService()
+            + getAnimals(): List<Animal>
+            + addAnimal(animal: Animal): UUID
+            + addAnimal(name: String, age: int): UUID
+            + removeAnimal(animal: Animal): boolean
+            + removeAnimal(animalId: UUID): boolean
+            + removeAnimal(animalNumber: int): boolean
+            + findAnimalById(animalId: UUID): Animal
+            + getVaccinesAppliedToAnimal(animalNumber: int): List<AppliedVaccine>
+            + applyVaccineToAnimal(animalNumber: int, vaccine: Vaccine): boolean
+            + deleteVaccineFromAllAnimals(vaccineUUID: UUID): boolean
+        }
+
+        class VaccineService {
+
+            
+            + getVaccines(): List<Vaccine>
+            + getNonExpiredVaccines(): List<Vaccine>
+            + addVaccine(batchNumber: String, volume: int, brand: String, dateOfExpiration: LocalDate): UUID
+            + findVaccineById(vaccineUUID: UUID): Vaccine
+            + deleteVaccine(vaccineUUID: UUID): boolean
+        }
+
+        AnimalService "1" --> "*" "model.Animal" :> has a List of animals (animals)
+        VaccineService "1" --> "*" "model.Vaccine" :> has a List of vaccines (vaccines)
+    }
+
+    package "controllers" {
+        class AdminController {
+            - animalService: AnimalService
+            - vaccineService: VaccineService
+            - formatter: DateTimeFormatter
+            
+            + AdminController(animalService: AnimalService, vaccineService: VaccineService)
+            + AdminController()
+            + addAnimal(name: String, age: int): UUID
+            + addVaccine(batchNumber: String, volume: int, brand: String, dateOfExpiration: String): UUID
+            + getAnimals(): List<String>
+            + getVaccines(): List<String>
+            + getNonExpiredVaccines(): List<String>
+            + getAnimalIdAndNames(): List<String>
+            + getVaccinesAppliedToAnimal(animalNumber: int): List<String>
+            + applyVaccineToAnimal(animalPosition: int, vaccineId: String): boolean
+            + deleteAnimal(animalPosition: int): boolean
+            + deleteVaccine(vaccineId: String): boolean
+        }
+
+        AdminController "1" o--> "1" "services.AnimalService" : animalService
+        AdminController "1" o--> "1" "services.VaccineService" : vaccineService
+    }
+
+    package "view" {
+        class AdminView {
+            - MENU: String
+            - scanner: Scanner
+            
+            + AdminView(adminController: AdminController, scanner: Scanner)
+            + showMenu(): void
+            - deleteVaccine(scanner: Scanner): void
+            - deleteAnimal(scanner: Scanner): void
+            - showVaccinesAppliedToAnimal(scanner: Scanner): void
+            - showAnimalNamesAndIds(): void
+            - showAllVaccines(): void
+            - showNonExpiredVaccines(): void
+            - showAllAnimals(): void
+            - applyVaccineToAnimal(scanner: Scanner): void
+            - createNewVaccine(scanner: Scanner): void
+            - createNewAnimal(scanner: Scanner): void
+        }
+
+        AdminView "1" o--> "1" "controllers.AdminController" :> adminController
+    }
+
+    Main --> "services.AnimalService" : creates
+    Main --> "services.VaccineService" : creates
+    Main --> "controllers.AdminController" : creates
+    Main --> "view.AdminView" : creates and uses
+}
+
+@enduml

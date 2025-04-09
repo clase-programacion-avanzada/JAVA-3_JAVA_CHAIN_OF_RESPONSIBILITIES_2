@@ -29,9 +29,8 @@ public class VaccineService {
 
     public UUID addVaccine(String batchNumber, int volume, String brand, LocalDate dateOfExpiration) {
         Vaccine vaccine = new Vaccine(batchNumber, volume, brand, dateOfExpiration);
-        return this.vaccines.add(vaccine)
-            ? vaccine.getId()
-            : null;
+        this.vaccines.add(vaccine);
+        return vaccine.getId();
     }
 
     public Vaccine findVaccineById(UUID vaccineUUID) {
